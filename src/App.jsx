@@ -6,13 +6,13 @@ const LINKS = {
   github: "https://github.com/brohum10/leetcode/tree/main",
   linkedin: "https://linkedin.com/in/sohamj2025",
   email: "mailto:soham.jindal16@gmail.com",
-  resume: "/resume.pdf",
-  cover: "/cover-letter.pdf",
+  resume: "resume.pdf",
+  cover: "cover-letter.pdf",
   droneVideo: "https://youtu.be/LozUyizZhEk",
 };
 
 // Put your big background image in /public named bg.jpg
-const BG_IMAGE = "/bg.jpg";
+const BG_IMAGE = "bg.jpg";
 
 export default function App() {
   // Enables /#about scrolling even with React Router
