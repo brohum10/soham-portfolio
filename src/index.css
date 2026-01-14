@@ -1,0 +1,17 @@
+:root {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji",
+    "Segoe UI Emoji";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;          /* <- THIS fixes the inset */
+  padding: 0;
+}
+
+* { box-sizing: border-box; }
+
+a { color: inherit; }
