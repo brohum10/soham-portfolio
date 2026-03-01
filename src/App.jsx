@@ -2,6 +2,10 @@ import { useMemo, useState, useEffect } from "react";
 import { Routes, Route, Link, NavLink, useLocation } from "react-router-dom";
 import headshot from "./assets/headshot.jpg";
 
+/**
+ * AI & Digital Experience “week mode”
+ * Works with GitHub Pages + Vite base because we use RELATIVE asset paths (no leading /).
+ */
 const LINKS = {
   github: "https://github.com/brohum10/leetcode/tree/main",
   linkedin: "https://linkedin.com/in/sohamj2025",
@@ -14,8 +18,13 @@ const LINKS = {
 // Put your big background image in /public named bg.jpg
 const BG_IMAGE = "bg.jpg";
 
+// Small text switches you can edit quickly
+const TARGET_ROLE = "AI & Digital Experience Intern";
+const TAGLINE =
+  "I bridge AI + product UX: evaluate systems, improve user journeys, and ship measurable fixes.";
+
 export default function App() {
-  // Enables /#about scrolling even with React Router
+  // Enables /#about scrolling even with Router + hash anchors
   const { hash, pathname } = useLocation();
 
   useEffect(() => {
@@ -43,9 +52,12 @@ export default function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/projects" element={<Projects />} />
+        <Route path="/projects" element={<CaseStudies />} />
         <Route path="/resume" element={<PdfPage title="Resume" pdfUrl={LINKS.resume} />} />
-        <Route path="/cover-letter" element={<PdfPage title="Cover Letter" pdfUrl={LINKS.cover} />} />
+        <Route
+          path="/cover-letter"
+          element={<PdfPage title="Cover Letter" pdfUrl={LINKS.cover} />}
+        />
         <Route path="/hobbies" element={<Hobbies />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<Home />} />
@@ -63,11 +75,12 @@ function TopNav() {
         </Link>
 
         <div style={navLinks}>
+          {/* HashRouter friendly "About" */}
           <a style={navA} href="#/##about">
-          About
+            About
           </a>
 
-          <NavItem to="/projects" label="Projects" />
+          <NavItem to="/projects" label="Case Studies" />
           <NavItem to="/hobbies" label="Hobbies" />
           <NavItem to="/contact" label="Contact" />
           <NavItem to="/resume" label="Resume" />
@@ -84,6 +97,7 @@ function NavItem({ to, label }) {
       style={({ isActive }) => ({
         ...navA,
         opacity: isActive ? 1 : 0.85,
+        textDecoration: "none",
       })}
     >
       {label}
@@ -91,24 +105,39 @@ function NavItem({ to, label }) {
   );
 }
 
+/* ===========================
+   HOME (AI & Digital Experience)
+   =========================== */
+
 function Home() {
+  const highlightStats = useMemo(
+    () => [
+      { label: "Strength", value: "AI evaluation + product thinking" },
+      { label: "Workflow", value: "Analyze → Diagnose → Improve → Validate" },
+      { label: "Tooling", value: "Python, SQL, dashboards, experiments" },
+      { label: "Focus", value: "Quality, clarity, self-service UX" },
+    ],
+    []
+  );
+
   return (
     <>
       <section style={hero}>
         <div style={heroInner}>
-          <div style={heroKicker}>WELCOME</div>
-          <h1 style={heroTitle}>Building dependable software, one step at a time.</h1>
-          <p style={heroSub}>
-            Purdue CompE (AI/ML), May 2026. Projects, experience, and a little personality.
-          </p>
+          <div style={heroKicker}>TARGETING</div>
+          <h1 style={heroTitle}>{TARGET_ROLE}</h1>
+          <p style={heroSub}>{TAGLINE}</p>
 
           <div style={ctaRow}>
             <Link style={btnLightOnDarkPrimary} to="/projects">
-              View Projects
+              View Case Studies
             </Link>
             <Link style={btnLightOnDark} to="/resume">
               Resume
             </Link>
+            <a style={btnLightOnDark} href={LINKS.linkedin} target="_blank" rel="noreferrer">
+              LinkedIn
+            </a>
             <a style={btnLightOnDark} href={LINKS.github} target="_blank" rel="noreferrer">
               GitHub
             </a>
@@ -123,14 +152,92 @@ function Home() {
       <main style={content}>
         <section id="about" style={section}>
           <SectionTitle title="About" />
-          <AboutBlock />
+
+          <div style={twoCol}>
+            <div style={glassPanel}>
+              <div style={aboutTop}>
+                <img src={headshot} alt="Soham Jindal" style={avatar} />
+                <div>
+                  <div style={meta}>Computer Engineering • Purdue • May 2026</div>
+                  <div style={hName}>Soham Jindal</div>
+                  <div style={meta2}>Bay Area (SF) / Purdue University</div>
+                </div>
+              </div>
+
+              <p style={textOnDark}>
+                I’m a CompE student at Purdue with an AI/ML concentration. I’m especially interested
+                in roles where AI meets user experience: measuring quality, finding failure modes,
+                improving content/workflows, and validating impact with metrics.
+              </p>
+
+              <p style={textOnDark}>
+                I like work that’s practical and measurable: build an evaluation rubric, run error
+                analysis, propose fixes, then re-measure so teams can ship with confidence.
+              </p>
+
+              <div style={ctaRow}>
+                <Link style={btnDark} to="/resume">
+                  Resume
+                </Link>
+                <Link style={btnOutlineOnGlass} to="/cover-letter">
+                  Cover Letter
+                </Link>
+                <a style={btnOutlineOnGlass} href={LINKS.email}>
+                  Email
+                </a>
+              </div>
+            </div>
+
+            <div style={glassPanel}>
+              <div style={smallHeadOnDark}>What I do</div>
+
+              <div style={whatIDoGrid}>
+                <div style={miniCard}>
+                  <div style={miniTitle}>1) Analyze</div>
+                  <div style={miniText}>
+                    Pull logs/feedback, segment issues, identify what users actually struggle with.
+                  </div>
+                </div>
+                <div style={miniCard}>
+                  <div style={miniTitle}>2) Diagnose</div>
+                  <div style={miniText}>
+                    Build a rubric, do error analysis, map root causes (content, retrieval, UX).
+                  </div>
+                </div>
+                <div style={miniCard}>
+                  <div style={miniTitle}>3) Improve</div>
+                  <div style={miniText}>
+                    Write clearer content, adjust prompts, tune retrieval, redesign flow steps.
+                  </div>
+                </div>
+                <div style={miniCard}>
+                  <div style={miniTitle}>4) Validate</div>
+                  <div style={miniText}>
+                    Measure before/after, run A/B tests when possible, ship the win.
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ marginTop: 16 }}>
+                <div style={smallHeadOnDark}>Highlights</div>
+                <div style={statGrid}>
+                  {highlightStats.map((s) => (
+                    <div key={s.label} style={statTile}>
+                      <div style={statLabel}>{s.label}</div>
+                      <div style={statValue}>{s.value}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section style={section}>
           <SectionTitle title="Quick links" />
           <div style={ctaRow}>
             <Link style={btnOutlineOnGlass} to="/projects">
-              Projects
+              Case Studies
             </Link>
             <Link style={btnOutlineOnGlass} to="/resume">
               Resume
@@ -153,118 +260,74 @@ function Home() {
   );
 }
 
-function AboutBlock() {
-  const skills = useMemo(
-    () => ["Python", "Java", "C/C++", "React", "Flask/FastAPI", "Docker", "Linux", "AWS", "SQL", "scikit-learn"],
-    []
-  );
+/* ===========================
+   CASE STUDIES (AI + Digital UX framing)
+   =========================== */
 
-  return (
-    <div style={twoCol}>
-      <div style={glassPanel}>
-        <div style={aboutTop}>
-          <img src={headshot} alt="Soham Jindal" style={avatar} />
-          <div>
-            <div style={meta}>Computer Engineering • Purdue • May 2026</div>
-            <div style={hName}>Soham Jindal</div>
-            <div style={meta2}>Bay Area (SF) / Purdue University</div>
-          </div>
-        </div>
+function CaseStudies() {
+  const [openId, setOpenId] = useState("ai-quality");
 
-        <p style={textOnDark}>
-          I’m a Computer Engineering student at Purdue with an AI/ML concentration. I like building dependable software and
-          ML-adjacent systems—pipelines, services, and products that are reliable and easy to iterate on.
-        </p>
-
-        <div style={ctaRow}>
-          <Link style={btnDark} to="/resume">
-            Resume
-          </Link>
-          <Link style={btnOutlineOnGlass} to="/cover-letter">
-            Cover Letter
-          </Link>
-          <a style={btnOutlineOnGlass} href={LINKS.linkedin} target="_blank" rel="noreferrer">
-            LinkedIn
-          </a>
-          <a style={btnOutlineOnGlass} href={LINKS.email}>
-            Email
-          </a>
-        </div>
-      </div>
-
-      <div style={glassPanel}>
-        <div style={smallHeadOnDark}>Currently</div>
-        <p style={textOnDark}>
-          Practicing DSA regularly, polishing this portfolio, and rebuilding one public demo project to share on GitHub.
-        </p>
-
-        <div style={{ marginTop: 18 }}>
-          <div style={smallHeadOnDark}>Skills snapshot</div>
-          <div style={pillRow}>
-            {skills.map((s) => (
-              <span key={s} style={pillOnGlass}>
-                {s}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function Projects() {
-  const [openId, setOpenId] = useState("style");
-
-  const projects = useMemo(
+  const studies = useMemo(
     () => [
       {
-        id: "style",
-        title: "Message Style Imitation (Retrieval + ML)",
+        id: "ai-quality",
+        title: "AI Quality: Retrieval + Style-Consistent Replies",
         oneLiner:
-          "Prototype that generates replies aligned to a user’s past communication style using retrieval + generation.",
-        details: [
-          "Designed retrieval logic with recency + similarity scoring",
-          "Built a small service layer + demo interface for side-by-side comparison",
-          "Focused on reliability: structure, reproducibility, and evaluation mindset",
+          "Designed a prototype that retrieves relevant context and generates responses aligned to a user’s prior style.",
+        outcome:
+          "Built a measurable evaluation mindset: quality checks, side-by-side comparisons, and iteration.",
+        bullets: [
+          "Structured a retrieval + generation flow and tracked quality through repeatable tests",
+          "Focused on failure modes: irrelevant retrieval, style drift, and unsafe outputs",
+          "Created a lightweight demo interface to compare outputs and iterate quickly",
         ],
         tech: ["Python", "Flask", "FAISS", "SQLite", "Docker"],
+        howItMaps: ["AI eval", "rubrics", "error analysis", "UX iteration"],
       },
       {
         id: "telemetry",
-        title: "Satellite Telemetry Anomaly Detection (L3Harris / Purdue)",
+        title: "Signal QA: Telemetry Pipelines + Detector Evaluation",
         oneLiner:
-          "Telemetry feature pipelines and detector evaluation for cyber-threat detection simulations.",
-        details: [
-          "Built modular pipeline components for windowed features + QA checks",
-          "Evaluated models with precision/recall and ROC-AUC; iterated based on results",
-          "Worked in Linux + virtualized lab setups to simulate conditions and debug behavior",
+          "Built reproducible pipelines for telemetry feature extraction, QA checks, and evaluation metrics.",
+        outcome:
+          "Learned how to turn messy signals into dependable, measurable workflows.",
+        bullets: [
+          "Implemented windowed features + QA checks to ensure data reliability",
+          "Evaluated approaches with precision/recall and ROC-AUC for a consistent measurement loop",
+          "Used Linux/virtual environments to simulate conditions and produce labeled traces",
         ],
         tech: ["Python", "pandas", "scikit-learn", "Linux", "SQL"],
+        howItMaps: ["data QA", "metrics", "workflow automation", "reporting"],
       },
       {
-        id: "mobile",
-        title: "Mobile Apps (InfoDotLLC)",
+        id: "digital-exp",
+        title: "Digital Experience: Mobile Product Reliability",
         oneLiner:
-          "Android/iOS apps with production features, improved stability, and team-based engineering practices.",
-        details: [
-          "Shipped production features like payments, notifications, and analytics",
-          "Improved stability through systematic testing and refactoring",
-          "Collaborated in an Agile team with sprint planning and code reviews",
+          "Shipped mobile features and improved app reliability through systematic testing and refactoring.",
+        outcome:
+          "Built intuition for user experience: stability and clarity drive adoption and retention.",
+        bullets: [
+          "Worked on real-user features (payments, notifications, analytics)",
+          "Improved stability via testing and refactoring mindset",
+          "Collaborated in an Agile team with reviews and iteration cycles",
         ],
         tech: ["Kotlin", "Swift", "CI/CD", "Git"],
+        howItMaps: ["customer experience", "quality", "analytics", "iteration"],
       },
       {
-        id: "webcloud",
-        title: "Web + Cloud Internship (Alpha Net)",
+        id: "web",
+        title: "Web + Cloud: Shipping Improvements",
         oneLiner:
-          "Website work plus AWS/Lambda exposure supporting deployment and scalability.",
-        details: [
-          "Improved UX and functionality on a production website",
-          "Supported mobile work and cross-platform workflows",
-          "Used AWS/Lambda patterns to support scalable deployment",
+          "Improved a production website and supported workflows with cloud tools and deployment patterns.",
+        outcome:
+          "Learned how small UX improvements compound, especially in customer-facing flows.",
+        bullets: [
+          "Improved UX and functionality on a production site",
+          "Supported scalable workflows with cloud patterns (AWS/Lambda exposure)",
+          "Collaborated with stakeholders to translate needs into shipped work",
         ],
         tech: ["HTML/CSS", "JavaScript", "AWS", "Lambda"],
+        howItMaps: ["self-service UX", "stakeholder alignment", "delivery"],
       },
     ],
     []
@@ -273,11 +336,14 @@ function Projects() {
   return (
     <main style={content}>
       <section style={section}>
-        <SectionTitle title="Projects" />
-        <p style={subtleOnDark}>Click to expand.</p>
+        <SectionTitle title="Case Studies" />
+        <p style={subtleOnDark}>
+          Framed for AI + digital experience work: quality evaluation, user-impact iteration,
+          and measurable improvement loops.
+        </p>
 
         <div style={accordion}>
-          {projects.map((p) => {
+          {studies.map((p) => {
             const isOpen = openId === p.id;
             return (
               <button
@@ -295,24 +361,54 @@ function Projects() {
 
                 {isOpen && (
                   <div style={accBody} onClick={(e) => e.stopPropagation()}>
-                    <div style={smallHeadOnDark}>What I did</div>
-                    <ul style={listOnDark}>
-                      {p.details.map((d) => (
-                        <li key={d} style={{ marginBottom: 6 }}>
-                          {d}
-                        </li>
-                      ))}
-                    </ul>
+                    <div style={smallHeadOnDark}>Impact / outcome</div>
+                    <div style={impactBox}>{p.outcome}</div>
 
-                    <div style={{ marginTop: 10 }}>
-                      <div style={smallHeadOnDark}>Tech</div>
-                      <div style={pillRow}>
-                        {p.tech.map((t) => (
-                          <span key={t} style={pillOnGlass}>
-                            {t}
-                          </span>
+                    <div style={{ marginTop: 12 }}>
+                      <div style={smallHeadOnDark}>What I did</div>
+                      <ul style={listOnDark}>
+                        {p.bullets.map((d) => (
+                          <li key={d} style={{ marginBottom: 6 }}>
+                            {d}
+                          </li>
                         ))}
+                      </ul>
+                    </div>
+
+                    <div style={twoMiniCols}>
+                      <div>
+                        <div style={smallHeadOnDark}>Tech</div>
+                        <div style={pillRow}>
+                          {p.tech.map((t) => (
+                            <span key={t} style={pillOnGlass}>
+                              {t}
+                            </span>
+                          ))}
+                        </div>
                       </div>
+
+                      <div>
+                        <div style={smallHeadOnDark}>How this maps</div>
+                        <div style={pillRow}>
+                          {p.howItMaps.map((x) => (
+                            <span key={x} style={pillOnGlass}>
+                              {x}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    <div style={{ marginTop: 14, display: "flex", gap: 10, flexWrap: "wrap" }}>
+                      <Link style={btnDark} to="/resume">
+                        View Resume
+                      </Link>
+                      <a style={btnOutlineOnGlass} href={LINKS.linkedin} target="_blank" rel="noreferrer">
+                        LinkedIn
+                      </a>
+                      <a style={btnOutlineOnGlass} href={LINKS.github} target="_blank" rel="noreferrer">
+                        GitHub
+                      </a>
                     </div>
                   </div>
                 )}
@@ -326,6 +422,10 @@ function Projects() {
     </main>
   );
 }
+
+/* ===========================
+   HOBBIES / CONTACT / PDF
+   =========================== */
 
 function Hobbies() {
   const hobbies = useMemo(
@@ -375,7 +475,9 @@ function Contact() {
     <main style={content}>
       <section style={section}>
         <SectionTitle title="Contact" />
-        <p style={textOnDark}>Email is best. I’m happy to chat about internships, projects, or collaboration.</p>
+        <p style={textOnDark}>
+          Email is best. I’m happy to chat about AI quality, digital experience, or internship opportunities.
+        </p>
 
         <div style={ctaRow}>
           <a style={btnDark} href={LINKS.email}>
@@ -386,6 +488,9 @@ function Contact() {
           </a>
           <Link style={btnOutlineOnGlass} to="/resume">
             Resume
+          </Link>
+          <Link style={btnOutlineOnGlass} to="/cover-letter">
+            Cover Letter
           </Link>
         </div>
       </section>
@@ -404,6 +509,9 @@ function PdfPage({ title, pdfUrl }) {
         <div style={ctaRow}>
           <a style={btnDark} href={pdfUrl} target="_blank" rel="noreferrer">
             Open PDF
+          </a>
+          <a style={btnOutlineOnGlass} href={pdfUrl} download>
+            Download
           </a>
         </div>
 
@@ -426,7 +534,10 @@ function SectionTitle({ title }) {
   );
 }
 
-/* ===== styles ===== */
+/* ===========================
+   STYLES
+   =========================== */
+
 const page = { minHeight: "100vh", color: "white" };
 
 const bg = {
@@ -487,8 +598,8 @@ const navA = {
 const hero = { height: "100vh", minHeight: 650, display: "flex", alignItems: "center" };
 const heroInner = { maxWidth: 1200, margin: "0 auto", padding: "0 22px" };
 const heroKicker = { letterSpacing: 3, fontSize: 12, opacity: 0.9, fontWeight: 900 };
-const heroTitle = { margin: "12px 0 0 0", fontSize: 64, letterSpacing: -1, lineHeight: 1.02, maxWidth: 980 };
-const heroSub = { marginTop: 16, fontSize: 18, opacity: 0.9, lineHeight: 1.7, maxWidth: 760 };
+const heroTitle = { margin: "12px 0 0 0", fontSize: 60, letterSpacing: -1, lineHeight: 1.02, maxWidth: 980 };
+const heroSub = { marginTop: 16, fontSize: 18, opacity: 0.9, lineHeight: 1.7, maxWidth: 820 };
 const scrollHint = { marginTop: 18, color: "rgba(255,255,255,0.75)", fontSize: 14 };
 
 const content = { paddingBottom: 80 };
@@ -575,27 +686,132 @@ const btnOutlineOnGlass = {
   fontSize: 14,
 };
 
-const smallHeadOnDark = { fontSize: 12, fontWeight: 900, letterSpacing: 2, textTransform: "uppercase", color: "rgba(255,255,255,0.90)" };
+const smallHeadOnDark = {
+  fontSize: 12,
+  fontWeight: 900,
+  letterSpacing: 2,
+  textTransform: "uppercase",
+  color: "rgba(255,255,255,0.90)",
+};
 
 const pillRow = { display: "flex", gap: 8, flexWrap: "wrap", marginTop: 10 };
-const pillOnGlass = { fontSize: 12, padding: "6px 10px", borderRadius: 999, border: "1px solid rgba(255,255,255,0.18)", color: "rgba(255,255,255,0.90)", background: "rgba(255,255,255,0.10)" };
+const pillOnGlass = {
+  fontSize: 12,
+  padding: "6px 10px",
+  borderRadius: 999,
+  border: "1px solid rgba(255,255,255,0.18)",
+  color: "rgba(255,255,255,0.90)",
+  background: "rgba(255,255,255,0.10)",
+};
 
 const accordion = { display: "grid", gap: 12 };
-const accItemGlass = { width: "100%", textAlign: "left", borderRadius: 16, padding: 16, cursor: "pointer", background: "rgba(255,255,255,0.10)", border: "1px solid rgba(255,255,255,0.16)", backdropFilter: "blur(12px)", color: "white" };
+
+const accItemGlass = {
+  width: "100%",
+  textAlign: "left",
+  borderRadius: 16,
+  padding: 16,
+  cursor: "pointer",
+  background: "rgba(255,255,255,0.10)",
+  border: "1px solid rgba(255,255,255,0.16)",
+  backdropFilter: "blur(12px)",
+  color: "white",
+};
+
 const accItemGlassOpen = { boxShadow: "0 18px 60px rgba(0,0,0,0.35)" };
+
 const accTop = { display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: 12 };
 const accTitleOnDark = { fontSize: 16, fontWeight: 950 };
 const accOneOnDark = { marginTop: 6, color: "rgba(255,255,255,0.78)", lineHeight: 1.6 };
 const accChevronOnDark = { fontSize: 22, fontWeight: 950, color: "rgba(255,255,255,0.90)" };
+
 const accBody = { marginTop: 14 };
-const listOnDark = { marginTop: 10, marginBottom: 0, paddingLeft: 18, color: "rgba(255,255,255,0.88)", lineHeight: 1.7 };
+
+const listOnDark = {
+  marginTop: 10,
+  marginBottom: 0,
+  paddingLeft: 18,
+  color: "rgba(255,255,255,0.88)",
+  lineHeight: 1.7,
+};
+
+const impactBox = {
+  marginTop: 8,
+  padding: 12,
+  borderRadius: 14,
+  background: "rgba(255,255,255,0.10)",
+  border: "1px solid rgba(255,255,255,0.16)",
+  color: "rgba(255,255,255,0.90)",
+  lineHeight: 1.55,
+};
+
+const twoMiniCols = {
+  marginTop: 12,
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: 12,
+};
+
+const whatIDoGrid = {
+  marginTop: 12,
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: 10,
+};
+
+const miniCard = {
+  padding: 12,
+  borderRadius: 14,
+  background: "rgba(255,255,255,0.10)",
+  border: "1px solid rgba(255,255,255,0.16)",
+};
+
+const miniTitle = { fontWeight: 900, marginBottom: 6 };
+const miniText = { color: "rgba(255,255,255,0.86)", lineHeight: 1.55, fontSize: 14 };
+
+const statGrid = {
+  marginTop: 10,
+  display: "grid",
+  gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
+  gap: 10,
+};
+
+const statTile = {
+  padding: 12,
+  borderRadius: 14,
+  background: "rgba(255,255,255,0.10)",
+  border: "1px solid rgba(255,255,255,0.16)",
+};
+
+const statLabel = { fontSize: 12, color: "rgba(255,255,255,0.75)" };
+const statValue = { marginTop: 6, fontWeight: 900, lineHeight: 1.35 };
 
 const hobbyGrid = { display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 14 };
-const glassCard = { borderRadius: 16, padding: 16, background: "rgba(255,255,255,0.10)", border: "1px solid rgba(255,255,255,0.16)", boxShadow: "0 18px 60px rgba(0,0,0,0.28)", backdropFilter: "blur(12px)" };
+const glassCard = {
+  borderRadius: 16,
+  padding: 16,
+  background: "rgba(255,255,255,0.10)",
+  border: "1px solid rgba(255,255,255,0.16)",
+  boxShadow: "0 18px 60px rgba(0,0,0,0.28)",
+  backdropFilter: "blur(12px)",
+};
+
 const hobbyTitleOnDark = { fontSize: 15, fontWeight: 950 };
 const hobbyDescOnDark = { marginTop: 8, color: "rgba(255,255,255,0.78)", lineHeight: 1.7 };
 
-const pdfFrameWrap = { borderRadius: 16, overflow: "hidden", border: "1px solid rgba(255,255,255,0.16)", background: "rgba(255,255,255,0.08)" };
+const pdfFrameWrap = {
+  borderRadius: 16,
+  overflow: "hidden",
+  border: "1px solid rgba(255,255,255,0.16)",
+  background: "rgba(255,255,255,0.08)",
+};
+
 const pdfFrame = { width: "100%", height: "78vh", border: "none" };
 
-const footerOnDark = { maxWidth: 1200, margin: "0 auto", padding: "18px 22px 60px", color: "rgba(255,255,255,0.65)", fontSize: 13 };
+const footerOnDark = {
+  maxWidth: 1200,
+  margin: "0 auto",
+  padding: "18px 22px 60px",
+  color: "rgba(255,255,255,0.65)",
+  fontSize: 13,
+};
