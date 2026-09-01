@@ -122,6 +122,7 @@ function App() {
           <div id="site-navigation" className={`nav__links ${menuOpen ? "nav__links--open" : ""}`}>
             <a href="#experience" onClick={closeMenu}>Experience</a>
             <a href="#projects" onClick={closeMenu}>Projects</a>
+            <a href={links.github} target="_blank" rel="noreferrer">GitHub <ExternalArrow /></a>
             <a href="#skills" onClick={closeMenu}>Skills</a>
             <a href="#about" onClick={closeMenu}>About</a>
             <a className="nav__resume" href={links.resume} target="_blank" rel="noreferrer">Résumé <ExternalArrow /></a>
