@@ -132,7 +132,7 @@ export const projects = [
     highlights: [
       "Builds a minimal causal DAG through happened-before analysis and transitive reduction",
       "Finds concurrent shared-resource race suspects and the latency-critical causal path",
-      "Standard-library runtime with a tested command-line interface",
+      "400-event benchmark: 130.339 ms median after a bitset reduction optimization",
     ],
     tags: ["Python", "Vector clocks", "Graphs", "Dynamic programming", "CLI"],
     source: "https://github.com/brohum10/causal-trace-analyzer",
