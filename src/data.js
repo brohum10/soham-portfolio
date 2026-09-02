@@ -115,7 +115,7 @@ export const projects = [
     highlights: [
       "FAISS inner-product search with a NumPy fallback and SQLite WAL persistence",
       "Hybrid ranking combines semantic similarity, recency, and lexical overlap",
-      "100,000-message benchmark: 5.196 ms p95, 0.980 Recall@10, and 0.947 MRR",
+      "100,000-document benchmark: 16.625 ms p95, 1.000 Recall@10, and 1.000 MRR",
     ],
     tags: ["Python", "Flask", "FAISS", "SQLite", "Retrieval", "Docker"],
     source: "https://github.com/brohum10/semantic-search-platform",
