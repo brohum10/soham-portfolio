@@ -162,13 +162,13 @@ export const projects = [
     type: "Real-time collaboration",
     year: "2026",
     description:
-      "An offline-capable collaborative board whose TypeScript replicas deterministically merge concurrent edits after reconnecting.",
+      "An offline-capable collaborative board whose TypeScript replicas deterministically merge concurrent edits over a production-shaped sync service.",
     highlights: [
       "Field-level CRDT registers use hybrid logical clocks and actor tie-breaking to converge in any delivery order",
-      "React client persists offline operations; Node/WebSocket service deduplicates retries and replays missed cursors",
-      "100,000-operation benchmark: 2.229M operations/second median across five reproducible local runs",
+      "PostgreSQL journal, WebSocket rate limits, Prometheus metrics, and Docker Compose create a reproducible service stack",
+      "30 tests include 200-run property-based convergence fuzzing; benchmark median: 2.229M operations/second",
     ],
-    tags: ["TypeScript", "React", "Node.js", "WebSockets", "CRDT", "Vitest"],
+    tags: ["TypeScript", "React", "Node.js", "PostgreSQL", "WebSockets", "CRDT"],
     source: "https://github.com/brohum10/converge-crdt-board",
     accent: "green",
   },
