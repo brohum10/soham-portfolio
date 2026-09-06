@@ -157,6 +157,23 @@ export const projects = [
   },
   {
     number: "07",
+    title: "Converge Local-First Board",
+    category: "Product",
+    type: "Real-time collaboration",
+    year: "2026",
+    description:
+      "An offline-capable collaborative board whose TypeScript replicas deterministically merge concurrent edits after reconnecting.",
+    highlights: [
+      "Field-level CRDT registers use hybrid logical clocks and actor tie-breaking to converge in any delivery order",
+      "React client persists offline operations; Node/WebSocket service deduplicates retries and replays missed cursors",
+      "100,000-operation benchmark: 2.229M operations/second median across five reproducible local runs",
+    ],
+    tags: ["TypeScript", "React", "Node.js", "WebSockets", "CRDT", "Vitest"],
+    source: "https://github.com/brohum10/converge-crdt-board",
+    accent: "green",
+  },
+  {
+    number: "08",
     title: "Software Engineering Portfolio",
     category: "Product",
     type: "Web experience",
