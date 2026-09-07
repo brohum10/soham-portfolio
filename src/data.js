@@ -181,9 +181,9 @@ export const projects = [
     description:
       "An offline-capable collaborative board whose TypeScript replicas deterministically merge concurrent edits over a production-shaped sync service.",
     highlights: [
-      "Field-level CRDT registers use hybrid logical clocks and actor tie-breaking to converge in any delivery order",
+      "Field-level CRDT registers use hybrid logical clocks and operation-ID tie-breaking to converge in any delivery order",
       "PostgreSQL journal, WebSocket rate limits, Prometheus metrics, and Docker Compose create a reproducible service stack",
-      "30 tests include 200-run property-based convergence fuzzing; benchmark median: 2.229M operations/second",
+      "31 tests include exact-clock tie regression coverage and 200-run convergence fuzzing; benchmark median: 2.229M operations/second",
     ],
     tags: ["TypeScript", "React", "Node.js", "PostgreSQL", "WebSockets", "CRDT"],
     source: "https://github.com/brohum10/converge-crdt-board",

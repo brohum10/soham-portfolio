@@ -2,6 +2,7 @@
 
 [![Portfolio checks](https://github.com/brohum10/soham-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/brohum10/soham-portfolio/actions/workflows/ci.yml)
 [![Live site](https://img.shields.io/badge/live-GitHub%20Pages-111827)](https://brohum10.github.io/soham-portfolio/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 A responsive portfolio for Soham Jindal’s software engineering work. The site foregrounds architecture, failure-aware design, automated verification, and reproducible project results rather than generic technology lists.
 
@@ -56,6 +57,10 @@ Project, experience, link, and skill content lives in `src/data.js`. Presentatio
 When changing a benchmark claim, update it only after rerunning the benchmark in the linked project and recording the workload and environment there.
 
 ## Deployment
+
+Every successful `Portfolio checks` run on `main` automatically builds the same verified commit and publishes `dist/` to the `gh-pages` branch. A failing lint, test, or build run therefore cannot update the public site.
+
+For a manual fallback:
 
 ```bash
 npm run deploy
