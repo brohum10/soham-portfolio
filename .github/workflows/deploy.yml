@@ -37,4 +37,4 @@ jobs:
         run: npm run build
 
       - name: Publish GitHub Pages branch
-        run: npx gh-pages -d dist -u "github-actions <41898282+github-actions[bot]@users.noreply.github.com>"
+        run: npx gh-pages -d dist -u "github-actions-bot <support+actions@github.com>"
