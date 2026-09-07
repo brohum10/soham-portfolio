@@ -89,6 +89,23 @@ export const projects = [
   },
   {
     number: "03",
+    title: "Chronicle LSM Store",
+    category: "Systems",
+    type: "Storage engine",
+    year: "2026",
+    description:
+      "A dependency-free C++20 key-value engine that makes durability, recovery, indexing, and compaction trade-offs explicit.",
+    highlights: [
+      "CRC-protected write-ahead log, atomic SSTable installation, torn-tail recovery, and corruption rejection",
+      "Probabilistic skip-list memtable, 1% target Bloom filters, offset indexes, tombstones, and full compaction",
+      "9 deterministic tests plus ASan/UBSan; 100,000-operation medians: 18,409 writes/s and 44,031 random reads/s",
+    ],
+    tags: ["C++20", "LSM tree", "Storage", "Concurrency", "Persistence", "CMake"],
+    source: "https://github.com/brohum10/chronicle-lsm-store",
+    accent: "amber",
+  },
+  {
+    number: "04",
     title: "Mini Raft Store",
     category: "Systems",
     type: "Distributed systems",
@@ -105,7 +122,7 @@ export const projects = [
     accent: "cyan",
   },
   {
-    number: "04",
+    number: "05",
     title: "Semantic Search & Response Platform",
     category: "Applied AI",
     type: "Retrieval infrastructure",
@@ -122,7 +139,7 @@ export const projects = [
     accent: "violet",
   },
   {
-    number: "05",
+    number: "06",
     title: "Causal Trace Analyzer",
     category: "Systems",
     type: "Developer tooling",
@@ -139,7 +156,7 @@ export const projects = [
     accent: "amber",
   },
   {
-    number: "06",
+    number: "07",
     title: "Luma Journal",
     category: "Applied AI",
     type: "On-device AI product",
@@ -156,7 +173,7 @@ export const projects = [
     accent: "rose",
   },
   {
-    number: "07",
+    number: "08",
     title: "Converge Local-First Board",
     category: "Product",
     type: "Real-time collaboration",
@@ -173,7 +190,7 @@ export const projects = [
     accent: "green",
   },
   {
-    number: "08",
+    number: "09",
     title: "Software Engineering Portfolio",
     category: "Product",
     type: "Web experience",

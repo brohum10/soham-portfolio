@@ -8,7 +8,7 @@ A responsive portfolio for Soham Jindal’s software engineering work. The site 
 ## What is included
 
 - Experience across ADT, L3Harris, and Alpha Net
-- Eight selected builds spanning safe LLM systems, distributed systems, local-first collaboration, retrieval, developer tooling, on-device AI, and frontend engineering
+- Nine selected builds spanning safe LLM systems, distributed systems, storage engines, local-first collaboration, retrieval, developer tooling, on-device AI, and frontend engineering
 - Accessible project filters, mobile navigation, keyboard focus states, skip navigation, and reduced-motion behavior
 - Direct links to source repositories, résumé, LinkedIn, GitHub, and email
 - Search and social metadata plus Person structured data
