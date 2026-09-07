@@ -94,11 +94,11 @@ export const projects = [
     type: "Storage engine",
     year: "2026",
     description:
-      "A dependency-free C++20 key-value engine that makes durability, recovery, indexing, and compaction trade-offs explicit.",
+      "A dependency-free C++20 LSM engine that makes atomicity, durability, recovery, indexing, range reads, and compaction trade-offs explicit.",
     highlights: [
-      "CRC-protected write-ahead log, atomic SSTable installation, torn-tail recovery, and corruption rejection",
-      "Probabilistic skip-list memtable, 1% target Bloom filters, offset indexes, tombstones, and full compaction",
-      "9 deterministic tests plus ASan/UBSan; 100,000-operation medians: 18,409 writes/s and 44,031 random reads/s",
+      "CRC-protected atomic write batches, SSTable installation, torn-tail recovery, and corruption rejection",
+      "Skip lists, Bloom filters, positional I/O, tombstones, k-way range scans, and full compaction",
+      "11 tests plus ASan/UBSan; three-run medians of 294,173 reads/s and 165,175 durable batched writes/s",
     ],
     tags: ["C++20", "LSM tree", "Storage", "Concurrency", "Persistence", "CMake"],
     source: "https://github.com/brohum10/chronicle-lsm-store",
