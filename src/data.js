@@ -64,7 +64,7 @@ export const projects = [
     highlights: [
       "Hybrid runbook retrieval, structured plan validation, and verified evidence citations",
       "Allowlisted read-only diagnostics, prompt-injection defenses, approval gates, and SQLite audit trails",
-      "Deterministic evaluation: 1.00 Recall@4, citation coverage, and unsafe-request block rate",
+      "Offline 24-case demo evaluation: 1.00 top-1 runbook hit rate; 53 tests and 96% measured coverage",
     ],
     tags: ["Python", "RAG", "LLM safety", "BM25", "SQLite", "Flask"],
     source: "https://github.com/brohum10/llm-incident-response-copilot",
@@ -81,7 +81,7 @@ export const projects = [
     highlights: [
       "Asynchronous job lifecycle with progress, cancellation, scope controls, and a bounded executor",
       "Redirect-safe streaming, robots rules, per-host pacing, and private-network protection",
-      "25,000-document benchmark: 20.503 ms p95 and 1.000 Recall@10",
+      "25,000 synthetic documents / 1,000 exact-topic queries: 17.239 ms p95 and 1.000 Hit@10",
     ],
     tags: ["Java", "Spring Boot", "PostgreSQL", "Concurrency", "BM25", "Prometheus"],
     source: "https://github.com/brohum10/concurrent-web-crawler",
@@ -132,7 +132,7 @@ export const projects = [
     highlights: [
       "FAISS inner-product search with a NumPy fallback and SQLite WAL persistence",
       "Hybrid ranking combines semantic similarity, recency, and lexical overlap",
-      "100,000-document benchmark: 16.625 ms p95, 1.000 Recall@10, and 1.000 MRR",
+      "100,000 synthetic documents / 500 exact-topic queries: 16.940 ms p95 and 12,990 indexed documents/s",
     ],
     tags: ["Python", "Flask", "FAISS", "SQLite", "Retrieval", "Docker"],
     source: "https://github.com/brohum10/semantic-search-platform",
@@ -191,6 +191,57 @@ export const projects = [
   },
   {
     number: "09",
+    title: "ScopeLedger",
+    category: "Product",
+    type: "Full-stack AI workflow",
+    year: "2026",
+    description:
+      "A hosted workspace that compares client requests to an agreement, verifies exact source evidence, and lets a human decide which changes belong in a proposal.",
+    highlights: [
+      "Two-pass AI review with quote provenance, skeptical verification, and human-controlled estimates",
+      "Owner-scoped Cloudflare D1 persistence, revision-safe writes, hash-linked audit events, and exports",
+      "45 deterministic tests plus a documented live-provider smoke test; no model-accuracy claim",
+    ],
+    tags: ["TypeScript", "React", "Cloudflare Workers", "D1", "LLM", "Full-stack"],
+    source: "https://github.com/brohum10/scopeledger",
+    accent: "violet",
+  },
+  {
+    number: "10",
+    title: "HarFlow Studio",
+    category: "Product",
+    type: "Privacy-first frontend",
+    year: "2026",
+    description:
+      "A browser-only network-capture analyzer with request waterfalls, budgets, and cautious before/after comparisons that never upload a HAR file.",
+    highlights: [
+      "Sanitized URL and metric normalization, unknown-transfer handling, and accessible local comparison UI",
+      "A 10,000-entry synthetic HAR analyzed in 14.378 ms p95 on a local Node 24/arm64 benchmark",
+      "15 automated edge-case tests and a dependency-free GitHub Pages deployment",
+    ],
+    tags: ["JavaScript", "Frontend", "Performance", "Accessibility", "Privacy", "GitHub Pages"],
+    source: "https://github.com/brohum10/harflow-studio",
+    accent: "cyan",
+  },
+  {
+    number: "11",
+    title: "RelayForge",
+    category: "Systems",
+    type: "Backend automation",
+    year: "2026",
+    description:
+      "A durable webhook outbox with signed delivery, idempotent publishing, leased workers, retries, dead-letter recovery, and an authenticated API.",
+    highlights: [
+      "SQLite WAL and lease tokens handle concurrent claims and crash recovery",
+      "11 tests cover signed payloads, retries, idempotency, API authentication, and stale leases",
+      "1,000-event local storage-path benchmark: 354 events/s; excludes HTTP and receiver time",
+    ],
+    tags: ["Python", "SQLite", "Webhooks", "Concurrency", "HMAC", "Automation"],
+    source: "https://github.com/brohum10/relayforge-webhooks",
+    accent: "amber",
+  },
+  {
+    number: "12",
     title: "Software Engineering Portfolio",
     category: "Product",
     type: "Web experience",

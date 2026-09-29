@@ -7,11 +7,14 @@ describe("portfolio", () => {
   it("shows all featured projects and their source links by default", () => {
     render(<App />);
 
-    expect(screen.getByText("Showing 9 projects")).toBeInTheDocument();
+    expect(screen.getByText("Showing 12 projects")).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Chronicle LSM Store" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Mini Raft Store" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "Luma Journal" })).toBeInTheDocument();
-    expect(screen.getAllByRole("link", { name: /source code on GitHub/ })).toHaveLength(9);
+    expect(screen.getByRole("heading", { name: "ScopeLedger" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "HarFlow Studio" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "RelayForge" })).toBeInTheDocument();
+    expect(screen.getAllByRole("link", { name: /source code on GitHub/ })).toHaveLength(12);
   });
 
   it("filters projects without hiding the filter state from assistive technology", async () => {
