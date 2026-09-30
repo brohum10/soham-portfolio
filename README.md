@@ -10,7 +10,8 @@ A responsive portfolio for Soham Jindal’s software engineering work. The site 
 
 - Experience across ADT, L3Harris, and Alpha Net
 - Twelve selected builds spanning safe LLM systems, distributed systems, storage engines, local-first collaboration, retrieval, backend automation, a full-stack product, on-device AI, and frontend engineering
-- Accessible project filters, mobile navigation, keyboard focus states, skip navigation, and reduced-motion behavior
+- An interactive project map and four switchable system walkthroughs that let visitors explore the architecture before opening a repository
+- Accessible project filters, mobile navigation, keyboard-operable map controls, visible focus states, skip navigation, and reduced-motion behavior
 - Direct links to source repositories, résumé, LinkedIn, GitHub, and email
 - Search and social metadata plus Person structured data
 - Component tests for the primary navigation and project-discovery flow
@@ -52,7 +53,7 @@ npm run build
 
 ## Content structure
 
-Project, experience, link, and skill content lives in `src/data.js`. Presentation and interactions live in `src/App.jsx`; the responsive visual system is in `src/index.css`. Keeping verified facts in one data module makes updates easier to review and reduces copy drift between sections.
+Project, experience, link, skill, and featured-walkthrough content lives in `src/data.js`. Presentation and interactions live in `src/App.jsx`; the responsive visual system is in `src/index.css`. The map and walkthrough share one selection state, use ordinary buttons instead of hover-only controls, and keep their text readable even when motion is reduced. Keeping verified facts in one data module makes updates easier to review and reduces copy drift between sections.
 
 When changing a benchmark claim, update it only after rerunning the benchmark in the linked project and recording the workload and environment there.
 

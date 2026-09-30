@@ -52,6 +52,65 @@ export const experience = [
 
 export const projectFilters = ["All", "Systems", "Applied AI", "Product"];
 
+export const featuredLenses = [
+  {
+    id: "systems",
+    label: "Systems",
+    shortLabel: "Systems",
+    projectTitle: "Chronicle LSM Store",
+    number: "01",
+    thesis: "Make durability visible.",
+    description:
+      "Follow one write from an atomic journal batch into the in-memory index, then out to searchable, compacted files.",
+    stages: ["Write batch", "WAL + recovery", "Memtable", "SSTable + read"],
+    proof: "11 sanitizer-tested cases",
+    detail: "C++20 · storage engine · crash recovery",
+    accent: "amber",
+  },
+  {
+    id: "ai",
+    label: "Applied AI",
+    shortLabel: "AI",
+    projectTitle: "LLM Incident Response Copilot",
+    number: "02",
+    thesis: "AI with an evidence trail.",
+    description:
+      "An incident report becomes a plan only after runbook retrieval, citation validation, and action-safety checks.",
+    stages: ["Incident", "Find runbooks", "Check citations", "Human review"],
+    proof: "53 tests · 96% coverage",
+    detail: "Python · RAG · safety checks",
+    accent: "green",
+  },
+  {
+    id: "product",
+    label: "Full stack",
+    shortLabel: "Product",
+    projectTitle: "ScopeLedger",
+    number: "03",
+    thesis: "Turn ambiguity into a decision.",
+    description:
+      "Compare a request with its agreement, verify source quotes, and keep the final estimate in human hands.",
+    stages: ["Documents", "AI review", "Verify evidence", "Approve + export"],
+    proof: "45 automated tests",
+    detail: "React · TypeScript · Cloudflare D1",
+    accent: "violet",
+  },
+  {
+    id: "frontend",
+    label: "Frontend",
+    shortLabel: "Frontend",
+    projectTitle: "HarFlow Studio",
+    number: "04",
+    thesis: "Make performance tangible.",
+    description:
+      "Explore a network capture locally, compare two runs, and see where the browser spent its time—without an upload.",
+    stages: ["Import HAR", "Sanitize", "Compare", "Investigate"],
+    proof: "15 tests · browser-only",
+    detail: "JavaScript · interaction · privacy",
+    accent: "cyan",
+  },
+];
+
 export const projects = [
   {
     number: "01",

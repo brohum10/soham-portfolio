@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import headshot from "./assets/headshot-web.jpg";
-import { experience, links, projectFilters, projects, skillGroups } from "./data";
+import { experience, featuredLenses, links, projectFilters, projects, skillGroups } from "./data";
 
 function ExternalArrow() {
   return <span aria-hidden="true">↗</span>;
@@ -55,9 +55,112 @@ function ProjectCard({ project }) {
   );
 }
 
+function ProjectMap({ activeLens, onSelect }) {
+  return (
+    <div className={`project-map project-map--${activeLens.accent}`} role="group" aria-label="Interactive project map">
+      <div className="project-map__header">
+        <span>Explore the work</span>
+        <span>{activeLens.number} / {String(featuredLenses.length).padStart(2, "0")}</span>
+      </div>
+      <div className="project-map__canvas">
+        <svg className="project-map__connections" viewBox="0 0 440 360" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M220 178 L84 65 M220 178 L356 65 M220 178 L84 287 M220 178 L356 287" />
+          <circle cx="220" cy="178" r="94" />
+          <circle cx="220" cy="178" r="138" />
+        </svg>
+        <div className="project-map__center" aria-hidden="true">
+          <span>BUILD</span>
+          <strong>↗</strong>
+          <span>PROVE</span>
+        </div>
+        {featuredLenses.map((lens) => (
+          <button
+            className={`project-map__node project-map__node--${lens.id}`}
+            type="button"
+            key={lens.id}
+            aria-pressed={activeLens.id === lens.id}
+            aria-label={`Explore ${lens.label} projects`}
+            onClick={() => onSelect(lens.id)}
+          >
+            <span>{lens.number}</span>
+            <strong>{lens.shortLabel}</strong>
+          </button>
+        ))}
+      </div>
+      <div className="project-map__readout" aria-live="polite">
+        <span>Selected / {activeLens.label}</span>
+        <strong>{activeLens.projectTitle}</strong>
+        <a href="#featured-work">See how it works <span aria-hidden="true">↘</span></a>
+      </div>
+    </div>
+  );
+}
+
+function FeaturedWork({ activeLens, onSelect }) {
+  const project = projects.find((item) => item.title === activeLens.projectTitle);
+
+  return (
+    <section className="featured-work" id="featured-work" aria-labelledby="featured-work-title">
+      <div className="container">
+        <div className="featured-work__intro">
+          <div>
+            <p className="eyebrow">A closer look</p>
+            <h2 id="featured-work-title">Pick a lens. Follow the thinking.</h2>
+          </div>
+          <p>Four kinds of problems, one approach: understand the edge cases, build the path, and show the evidence.</p>
+        </div>
+        <div className="featured-work__choices" role="group" aria-label="Featured project category">
+          {featuredLenses.map((lens) => (
+            <button
+              type="button"
+              key={lens.id}
+              aria-pressed={activeLens.id === lens.id}
+              onClick={() => onSelect(lens.id)}
+            >
+              <span>{lens.number}</span>{lens.label}<span aria-hidden="true">↗</span>
+            </button>
+          ))}
+        </div>
+        <div className={`featured-work__panel featured-work__panel--${activeLens.accent}`} key={activeLens.id} aria-live="polite">
+          <div className="featured-work__story">
+            <p className="featured-work__overline">Selected system / {activeLens.detail}</p>
+            <h3>{activeLens.thesis}</h3>
+            <p>{activeLens.description}</p>
+            <div className="featured-work__story-bottom">
+              <div><span>Evidence</span><strong>{activeLens.proof}</strong></div>
+              <a href={project.source} target="_blank" rel="noreferrer">
+                Explore {activeLens.projectTitle} <ExternalArrow />
+              </a>
+            </div>
+          </div>
+          <div className="featured-work__diagram" aria-label={`${activeLens.projectTitle} process`}>
+            <div className="featured-work__diagram-head">
+              <span>Inside the build</span>
+              <span>0{activeLens.stages.length} steps</span>
+            </div>
+            <ol>
+              {activeLens.stages.map((stage, index) => (
+                <li key={stage}>
+                  <span>0{index + 1}</span>
+                  <strong>{stage}</strong>
+                  {index < activeLens.stages.length - 1 && <span aria-hidden="true">↘</span>}
+                </li>
+              ))}
+            </ol>
+            <p>Explore the repository for the full architecture, tests, and limits.</p>
+          </div>
+        </div>
+        <a className="featured-work__all" href="#projects">Browse all {projects.length} projects <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+  );
+}
+
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState("All");
+  const [activeLensId, setActiveLensId] = useState(featuredLenses[0].id);
+  const activeLens = featuredLenses.find((lens) => lens.id === activeLensId);
 
   const visibleProjects = useMemo(
     () =>
@@ -127,18 +230,18 @@ function App() {
                 <span className="availability__dot" aria-hidden="true" />
                 Seeking Summer 2027 SWE internships
               </div>
-              <p className="hero__kicker">Backend · Distributed systems · Applied ML</p>
+              <p className="hero__kicker">Systems · Applied AI · Product engineering</p>
               <h1 id="hero-title">
                 I build software that holds up <span>under scrutiny.</span>
               </h1>
               <p className="hero__lede">
-                I’m Soham, a Purdue Computer Engineering student focused on reliable backend systems,
-                data infrastructure, and applied AI. I care about failure modes, measurable results,
-                and code another engineer can confidently extend.
+                I’m Soham, a Purdue Computer Engineering student building everything from durable
+                storage engines and evidence-backed AI to interfaces that make complex data useful.
+                I care about failure modes, measurable results, and code another engineer can extend.
               </p>
               <div className="hero__actions">
-                <a className="button button--primary" href="#projects">
-                  Explore selected work <span aria-hidden="true">↓</span>
+                <a className="button button--primary" href="#featured-work">
+                  Explore the work <span aria-hidden="true">↓</span>
                 </a>
                 <a className="button button--secondary" href={links.resume} target="_blank" rel="noreferrer">
                   View résumé <ExternalArrow />
@@ -151,36 +254,17 @@ function App() {
               </div>
             </div>
 
-            <aside className="hero-card" aria-label="Soham at a glance">
-              <div className="hero-card__top">
-                <p>Engineering snapshot</p>
-                <span>Sunnyvale, CA</span>
-              </div>
-              <div className="hero-card__metric hero-card__metric--featured">
-                <strong>3</strong>
-                <span>software engineering internships</span>
-              </div>
-              <div className="hero-card__metrics">
-                <div className="hero-card__metric">
-                  <strong>7</strong><span>featured engineering builds</span>
-                </div>
-                <div className="hero-card__metric">
-                  <strong>200K+</strong><span>telemetry records processed</span>
-                </div>
-                <div className="hero-card__metric">
-                  <strong>25K</strong><span>crawler benchmark documents</span>
-                </div>
-                <div className="hero-card__metric">
-                  <strong>100K</strong><span>retrieval benchmark messages</span>
-                </div>
-              </div>
-              <div className="hero-card__footer">
-                <span>B.S. Computer Engineering</span>
-                <span>May 2028</span>
-              </div>
-            </aside>
+            <ProjectMap activeLens={activeLens} onSelect={setActiveLensId} />
+          </div>
+          <div className="container hero__evidence" aria-label="Engineering snapshot">
+            <p><strong>{String(experience.length).padStart(2, "0")}</strong><span>engineering internships</span></p>
+            <p><strong>{String(projects.length).padStart(2, "0")}</strong><span>selected builds</span></p>
+            <p><strong>200K+</strong><span>telemetry records processed</span></p>
+            <p><strong>May ’28</strong><span>Purdue Computer Engineering</span></p>
           </div>
         </section>
+
+        <FeaturedWork activeLens={activeLens} onSelect={setActiveLensId} />
 
         <section className="section section--bordered" id="experience" aria-labelledby="experience-title">
           <div className="container">
