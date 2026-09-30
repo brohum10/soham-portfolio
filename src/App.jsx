@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import headshot from "./assets/headshot-web.jpg";
+import LivingSystem from "./LivingSystem";
 import { experience, featuredLenses, links, projectFilters, projects, skillGroups } from "./data";
 
 function ExternalArrow() {
@@ -52,47 +53,6 @@ function ProjectCard({ project }) {
         </a>
       </div>
     </article>
-  );
-}
-
-function ProjectMap({ activeLens, onSelect }) {
-  return (
-    <div className={`project-map project-map--${activeLens.accent}`} role="group" aria-label="Interactive project map">
-      <div className="project-map__header">
-        <span>Explore the work</span>
-        <span>{activeLens.number} / {String(featuredLenses.length).padStart(2, "0")}</span>
-      </div>
-      <div className="project-map__canvas">
-        <svg className="project-map__connections" viewBox="0 0 440 360" preserveAspectRatio="none" aria-hidden="true">
-          <path d="M220 178 L84 65 M220 178 L356 65 M220 178 L84 287 M220 178 L356 287" />
-          <circle cx="220" cy="178" r="94" />
-          <circle cx="220" cy="178" r="138" />
-        </svg>
-        <div className="project-map__center" aria-hidden="true">
-          <span>BUILD</span>
-          <strong>↗</strong>
-          <span>PROVE</span>
-        </div>
-        {featuredLenses.map((lens) => (
-          <button
-            className={`project-map__node project-map__node--${lens.id}`}
-            type="button"
-            key={lens.id}
-            aria-pressed={activeLens.id === lens.id}
-            aria-label={`Explore ${lens.label} projects`}
-            onClick={() => onSelect(lens.id)}
-          >
-            <span>{lens.number}</span>
-            <strong>{lens.shortLabel}</strong>
-          </button>
-        ))}
-      </div>
-      <div className="project-map__readout" aria-live="polite">
-        <span>Selected / {activeLens.label}</span>
-        <strong>{activeLens.projectTitle}</strong>
-        <a href="#featured-work">See how it works <span aria-hidden="true">↘</span></a>
-      </div>
-    </div>
   );
 }
 
@@ -221,7 +181,7 @@ function App() {
       </header>
 
       <main id="main-content">
-        <section className="hero" id="top" aria-labelledby="hero-title">
+        <section className="hero hero--immersive" id="top" aria-labelledby="hero-title">
           <div className="hero__glow hero__glow--one" aria-hidden="true" />
           <div className="hero__glow hero__glow--two" aria-hidden="true" />
           <div className="container hero__grid">
@@ -230,14 +190,15 @@ function App() {
                 <span className="availability__dot" aria-hidden="true" />
                 Seeking Summer 2027 SWE internships
               </div>
-              <p className="hero__kicker">Systems · Applied AI · Product engineering</p>
-              <h1 id="hero-title">
-                I build software that holds up <span>under scrutiny.</span>
+              <p className="hero__kicker">Software engineer / Purdue ’28</p>
+              <h1 id="hero-title" aria-label="Soham Jindal">
+                <span className="hero__name-line" aria-hidden="true">SOHAM<span className="hero__name-star">✳</span></span>
+                <span className="hero__name-line hero__name-line--outline" aria-hidden="true">JINDAL<span className="hero__name-period">.</span></span>
               </h1>
+              <p className="hero__statement">Complex ideas.<br /><em>Made tangible.</em></p>
               <p className="hero__lede">
-                I’m Soham, a Purdue Computer Engineering student building everything from durable
-                storage engines and evidence-backed AI to interfaces that make complex data useful.
-                I care about failure modes, measurable results, and code another engineer can extend.
+                I turn curiosity into software. From the systems underneath
+                to the experiences you can touch.
               </p>
               <div className="hero__actions">
                 <a className="button button--primary" href="#featured-work">
@@ -254,8 +215,9 @@ function App() {
               </div>
             </div>
 
-            <ProjectMap activeLens={activeLens} onSelect={setActiveLensId} />
+            <LivingSystem activeLens={activeLens} onSelect={setActiveLensId} />
           </div>
+          <div className="container hero__chapter"><span>Ideas → systems → experiences</span><a href="#featured-work">Scroll to explore <span aria-hidden="true">↓</span></a><span>Selected work / 2026</span></div>
           <div className="container hero__evidence" aria-label="Engineering snapshot">
             <p><strong>{String(experience.length).padStart(2, "0")}</strong><span>engineering internships</span></p>
             <p><strong>{String(projects.length).padStart(2, "0")}</strong><span>selected builds</span></p>

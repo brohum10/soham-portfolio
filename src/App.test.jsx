@@ -1,10 +1,24 @@
 import { fireEvent, render, screen, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, expect, it } from "vitest";
+import { beforeEach, afterEach, describe, expect, it, vi } from "vitest";
 import App from "./App";
 import { featuredLenses, projects } from "./data";
 
 describe("portfolio", () => {
+  beforeEach(() => vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(null));
+  afterEach(() => vi.restoreAllMocks());
+
+  it("keeps project discovery usable without canvas and honors reduced motion", async () => {
+    vi.spyOn(window, "matchMedia").mockReturnValue({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() });
+    const user = userEvent.setup();
+    render(<App />);
+    expect(screen.getByRole("button", { name: "Pause motion" })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("button", { name: "Scatter sculpture" })).toBeDisabled();
+    await user.click(screen.getByRole("button", { name: "Explore Applied AI projects" }));
+    expect(screen.getByRole("link", { name: /Explore LLM Incident Response Copilot/ })).toHaveAttribute("href", "https://github.com/brohum10/llm-incident-response-copilot");
+    await user.click(screen.getByRole("button", { name: "Pause motion" }));
+    expect(screen.getByRole("button", { name: "Scatter sculpture" })).toBeEnabled();
+  });
   it("keeps every featured path connected to a real project", () => {
     expect(new Set(featuredLenses.map((lens) => lens.id)).size).toBe(featuredLenses.length);
     for (const lens of featuredLenses) {
