@@ -8,15 +8,15 @@ export const links = {
 export const experience = [
   {
     company: "ADT",
-    role: "Software Engineering Intern — AI & CX Systems",
-    date: "May 2026 — July 2026",
-    location: "Boca Raton, FL",
+    role: "AI & Automation Software Engineer",
+    date: "August 2026 — Present",
+    location: "Boca Raton, FL / Remote",
     summary:
-      "Built evaluation and automation systems that made conversational-AI defects easier to find, prioritize, and verify.",
+      "Building AI workflow validation and automation. Previously Software Engineering Intern — AI & CX Systems, May–August 2026.",
     bullets: [
-      "Built a Python/pandas ETL and classification pipeline for 600+ AI-assisted support interactions.",
-      "Created a Python/pytest regression suite covering 40+ conversational AI and knowledge-retrieval flows, surfacing 25+ defects.",
-      "Automated validation and reporting across alarm, billing, and account datasets, reducing weekly defect-triage time from 5 hours to 90 minutes.",
+      "Built Python/pandas pipelines to classify AI-assisted support interactions, standardize use-case labels, and prioritize data-quality and product defects.",
+      "Built pytest regression tests for conversational AI and retrieval, checking routing, escalation, and agent handoffs.",
+      "Contributed to LLM workflow development and model training; automated validation across alarm, billing, and account data and partnered with engineers to verify fixes.",
     ],
     tags: ["Python", "pandas", "pytest", "ETL", "AI evaluation"],
   },

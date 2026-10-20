@@ -361,7 +361,7 @@ function App() {
               </p>
               <div className="education-card">
                 <div><span>Education</span><strong>Purdue University</strong><p>B.S. Computer Engineering · AI/ML minor</p></div>
-                <div><span>Expected</span><strong>May 2028</strong><p>GPA: 3.7 · U.S. Citizen</p></div>
+                <div><span>Expected</span><strong>May 2028</strong><p>GPA: 3.68 · U.S. Citizen</p></div>
               </div>
             </div>
           </div>

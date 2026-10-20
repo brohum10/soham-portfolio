@@ -8,6 +8,17 @@ describe("portfolio", () => {
   beforeEach(() => vi.spyOn(HTMLCanvasElement.prototype, "getContext").mockReturnValue(null));
   afterEach(() => vi.restoreAllMocks());
 
+  it("keeps the public resume link and current profile facts aligned", () => {
+    render(<App />);
+    expect(screen.getByText("AI & Automation Software Engineer")).toBeInTheDocument();
+    expect(screen.getByText("August 2026 — Present")).toBeInTheDocument();
+    expect(screen.getByText(/Previously Software Engineering Intern/)).toBeInTheDocument();
+    expect(screen.getByText("GPA: 3.68 · U.S. Citizen")).toBeInTheDocument();
+    const resumeLinks = screen.getAllByRole("link").filter((link) => link.getAttribute("href")?.endsWith("resume.pdf"));
+    expect(resumeLinks.length).toBeGreaterThanOrEqual(2);
+    for (const link of resumeLinks) expect(link).toHaveAttribute("target", "_blank");
+  });
+
   it("keeps project discovery usable without canvas and honors reduced motion", async () => {
     vi.spyOn(window, "matchMedia").mockReturnValue({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() });
     const user = userEvent.setup();
