@@ -26,7 +26,7 @@ describe("portfolio", () => {
     expect(screen.getByRole("button", { name: "Pause motion" })).toHaveAttribute("aria-pressed", "true");
     expect(screen.getByRole("button", { name: "Scatter sculpture" })).toBeDisabled();
     await user.click(screen.getByRole("button", { name: "Explore Applied AI projects" }));
-    expect(screen.getByRole("link", { name: /Explore LLM Incident Response Copilot/ })).toHaveAttribute("href", "https://github.com/brohum10/llm-incident-response-copilot");
+    expect(screen.getByRole("link", { name: /Explore QueuePilot/ })).toHaveAttribute("href", "https://github.com/brohum10/queuepilot");
     await user.click(screen.getByRole("button", { name: "Pause motion" }));
     expect(screen.getByRole("button", { name: "Scatter sculpture" })).toBeEnabled();
   });

@@ -71,14 +71,14 @@ export const featuredLenses = [
     id: "ai",
     label: "Applied AI",
     shortLabel: "AI",
-    projectTitle: "LLM Incident Response Copilot",
+    projectTitle: "QueuePilot",
     number: "02",
-    thesis: "AI with an evidence trail.",
+    thesis: "Give automation a limit.",
     description:
-      "An incident report becomes a plan only after runbook retrieval, citation validation, and action-safety checks.",
-    stages: ["Incident", "Find runbooks", "Check citations", "Human review"],
-    proof: "53 tests · 96% coverage",
-    detail: "Python · RAG · safety checks",
+      "Compare support-routing models, spend a finite review budget, and keep a human decision trace.",
+    stages: ["Request", "Suggest route", "Review budget", "Audit decision"],
+    proof: "3,072 held-out requests · release blocked",
+    detail: "Python · ML evaluation · SQLite",
     accent: "green",
   },
   {
@@ -123,7 +123,7 @@ export const projects = [
     highlights: [
       "Hybrid runbook retrieval, structured plan validation, and verified evidence citations",
       "Allowlisted read-only diagnostics, prompt-injection defenses, approval gates, and SQLite audit trails",
-      "Offline 24-case demo evaluation: 1.00 top-1 runbook hit rate; 53 tests and 96% measured coverage",
+      "Offline challenge reports retrieval misses and out-of-scope false positives; live-model quality remains unmeasured",
     ],
     tags: ["Python", "RAG", "LLM safety", "BM25", "SQLite", "Flask"],
     source: "https://github.com/brohum10/llm-incident-response-copilot",
@@ -140,7 +140,7 @@ export const projects = [
     highlights: [
       "Asynchronous job lifecycle with progress, cancellation, scope controls, and a bounded executor",
       "Redirect-safe streaming, robots rules, per-host pacing, and private-network protection",
-      "25,000 synthetic documents / 1,000 exact-topic queries: 17.239 ms p95 and 1.000 Hit@10",
+      "Cranfield's 225 human-judged queries: title + abstract nDCG@10 0.5107 versus a 0.3879 title-only baseline",
     ],
     tags: ["Java", "Spring Boot", "PostgreSQL", "Concurrency", "BM25", "Prometheus"],
     source: "https://github.com/brohum10/concurrent-web-crawler",
@@ -157,7 +157,7 @@ export const projects = [
     highlights: [
       "CRC-protected atomic write batches, SSTable installation, torn-tail recovery, and corruption rejection",
       "Skip lists, Bloom filters, positional I/O, tombstones, k-way range scans, and full compaction",
-      "11 tests plus ASan/UBSan; three-run medians of 294,173 reads/s and 165,175 durable batched writes/s",
+      "Eleven tests plus ASan/UBSan cover recovery and corruption; local throughput measurements are documented separately",
     ],
     tags: ["C++20", "LSM tree", "Storage", "Concurrency", "Persistence", "CMake"],
     source: "https://github.com/brohum10/chronicle-lsm-store",
@@ -182,19 +182,19 @@ export const projects = [
   },
   {
     number: "05",
-    title: "Semantic Search & Response Platform",
+    title: "QueuePilot",
     category: "Applied AI",
-    type: "Retrieval infrastructure",
+    type: "Human-in-the-loop ML",
     year: "2026",
     description:
-      "A local-first retrieval service that persists messages, searches normalized vectors, reranks candidates, and returns source-backed responses.",
+      "A local support-routing workbench that compares trained text models while limiting how much work can enter a human review queue.",
     highlights: [
-      "FAISS inner-product search with a NumPy fallback and SQLite WAL persistence",
-      "Hybrid ranking combines semantic similarity, recency, and lexical overlap",
-      "100,000 synthetic documents / 500 exact-topic queries: 16.940 ms p95 and 12,990 indexed documents/s",
+      "Replays BANKING77 support questions and keeps model suggestions separate from saved human corrections",
+      "Capacity-aware review prioritizes sensitive and uncertain requests without forcing overflow into automation",
+      "Official held-out test has 3,072 requests; the candidate release remains blocked after slice checks",
     ],
-    tags: ["Python", "Flask", "FAISS", "SQLite", "Retrieval", "Docker"],
-    source: "https://github.com/brohum10/semantic-search-platform",
+    tags: ["Python", "scikit-learn", "SQLite", "ML evaluation", "Human review"],
+    source: "https://github.com/brohum10/queuepilot",
     accent: "violet",
   },
   {
@@ -208,7 +208,7 @@ export const projects = [
     highlights: [
       "Builds a minimal causal DAG through happened-before analysis and transitive reduction",
       "Finds concurrent shared-resource race suspects and the latency-critical causal path",
-      "400-event benchmark: 130.339 ms median after a bitset reduction optimization",
+      "Bitset reduction is checked against the simpler causal graph implementation and benchmarked separately",
     ],
     tags: ["Python", "Vector clocks", "Graphs", "Dynamic programming", "CLI"],
     source: "https://github.com/brohum10/causal-trace-analyzer",
@@ -242,7 +242,7 @@ export const projects = [
     highlights: [
       "Field-level CRDT registers use hybrid logical clocks and operation-ID tie-breaking to converge in any delivery order",
       "PostgreSQL journal, WebSocket rate limits, Prometheus metrics, and Docker Compose create a reproducible service stack",
-      "31 tests include exact-clock tie regression coverage and 200-run convergence fuzzing; benchmark median: 2.229M operations/second",
+      "35 tests include a forced reconnect race and generated convergence histories; architecture notes explain remaining limits",
     ],
     tags: ["TypeScript", "React", "Node.js", "PostgreSQL", "WebSockets", "CRDT"],
     source: "https://github.com/brohum10/converge-crdt-board",
@@ -275,7 +275,7 @@ export const projects = [
       "A browser-only network-capture analyzer with request waterfalls, budgets, and cautious before/after comparisons that never upload a HAR file.",
     highlights: [
       "Sanitized URL and metric normalization, unknown-transfer handling, and accessible local comparison UI",
-      "A 10,000-entry synthetic HAR analyzed in 14.378 ms p95 on a local Node 24/arm64 benchmark",
+      "Synthetic HAR benchmark and its measured scope are documented separately from page-speed claims",
       "15 automated edge-case tests and a dependency-free GitHub Pages deployment",
     ],
     tags: ["JavaScript", "Frontend", "Performance", "Accessibility", "Privacy", "GitHub Pages"],
@@ -293,7 +293,7 @@ export const projects = [
     highlights: [
       "SQLite WAL and lease tokens handle concurrent claims and crash recovery",
       "11 tests cover signed payloads, retries, idempotency, API authentication, and stale leases",
-      "1,000-event local storage-path benchmark: 354 events/s; excludes HTTP and receiver time",
+      "Local storage-path throughput is measured separately from receiver and network time",
     ],
     tags: ["Python", "SQLite", "Webhooks", "Concurrency", "HMAC", "Automation"],
     source: "https://github.com/brohum10/relayforge-webhooks",
