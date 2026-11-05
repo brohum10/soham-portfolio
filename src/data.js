@@ -301,20 +301,21 @@ export const projects = [
   },
   {
     number: "12",
-    title: "Software Engineering Portfolio",
+    title: "PlanClinic",
     category: "Product",
-    type: "Web experience",
+    type: "Database performance tool",
     year: "2026",
     description:
-      "The responsive React site you are viewing, designed to make architecture, trade-offs, and verified outcomes easy to scan.",
+      "A browser-only PostgreSQL query-plan explorer that turns nested JSON into a visual execution tree and evidence-based performance clues.",
     highlights: [
-      "Accessible navigation, project filtering, keyboard states, and reduced-motion support",
-      "Centralized content model with focused component tests and lint/build checks",
-      "Deployed through GitHub Pages with downloadable résumé and direct project links",
+      "Handles estimated and measured plans without presenting optimizer costs as runtime",
+      "Explains disk sorts, row-estimate gaps, repeated work, and temporary I/O with cautious next questions",
+      "Live, privacy-first demo; nine focused tests and a reproducible pure-analysis benchmark",
     ],
-    tags: ["React", "Vite", "CSS", "Accessibility", "Vitest", "GitHub Pages"],
-    source: "https://github.com/brohum10/soham-portfolio",
-    accent: "slate",
+    tags: ["JavaScript", "PostgreSQL", "Performance", "Accessibility", "GitHub Pages"],
+    source: "https://github.com/brohum10/planclinic",
+    demo: "https://brohum10.github.io/planclinic/",
+    accent: "green",
   },
 ];
 

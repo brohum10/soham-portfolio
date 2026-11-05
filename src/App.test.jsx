@@ -48,6 +48,8 @@ describe("portfolio", () => {
     expect(screen.getByRole("heading", { name: "ScopeLedger" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "HarFlow Studio" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "RelayForge" })).toBeInTheDocument();
+    expect(screen.getByRole("heading", { name: "PlanClinic" })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "Open PlanClinic live demo" })).toHaveAttribute("href", "https://brohum10.github.io/planclinic/");
     expect(screen.getAllByRole("link", { name: /source code on GitHub/ })).toHaveLength(12);
   });
 

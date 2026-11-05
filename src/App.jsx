@@ -51,6 +51,17 @@ function ProjectCard({ project }) {
         >
           View source <ExternalArrow />
         </a>
+        {project.demo && (
+          <a
+            className="project-card__link"
+            href={project.demo}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`Open ${project.title} live demo`}
+          >
+            Try the live demo <ExternalArrow />
+          </a>
+        )}
       </div>
     </article>
   );
