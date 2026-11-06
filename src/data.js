@@ -310,7 +310,7 @@ export const projects = [
     highlights: [
       "Handles estimated and measured plans without presenting optimizer costs as runtime",
       "Explains disk sorts, row-estimate gaps, repeated work, and temporary I/O with cautious next questions",
-      "Live, privacy-first demo; nine focused tests and a reproducible pure-analysis benchmark",
+      "Live demo, 10 focused tests, and a reproducible 50,000-row PGlite case study with recorded before/after plans",
     ],
     tags: ["JavaScript", "PostgreSQL", "Performance", "Accessibility", "GitHub Pages"],
     source: "https://github.com/brohum10/planclinic",
