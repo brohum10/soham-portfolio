@@ -47,7 +47,7 @@ function ProjectCard({ project }) {
           href={project.source}
           target="_blank"
           rel="noreferrer"
-          aria-label={`View ${project.title} source code on GitHub`}
+          aria-label={`View source for ${project.title} on GitHub`}
         >
           View source <ExternalArrow />
         </a>
@@ -57,7 +57,7 @@ function ProjectCard({ project }) {
             href={project.demo}
             target="_blank"
             rel="noreferrer"
-            aria-label={`Open ${project.title} live demo`}
+            aria-label={`Try the live demo for ${project.title}`}
           >
             Try the live demo <ExternalArrow />
           </a>
@@ -160,7 +160,7 @@ function App() {
 
       <header className="site-header">
         <nav className="nav container" aria-label="Primary navigation">
-          <a className="brand" href="#top" onClick={closeMenu} aria-label="Soham Jindal, home">
+          <a className="brand" href="#top" onClick={closeMenu}>
             <span className="brand__mark">SJ</span>
             <span className="brand__name">Soham Jindal</span>
           </a>
@@ -283,7 +283,7 @@ function App() {
               intro="Each project has a runnable path, deliberate constraints, automated checks, and an honest explanation of what is—and is not—measured."
             />
 
-            <div className="project-filters" aria-label="Filter projects">
+            <div className="project-filters" role="group" aria-label="Filter projects">
               {projectFilters.map((filter) => (
                 <button
                   key={filter}

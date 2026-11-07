@@ -23,11 +23,11 @@ describe("portfolio", () => {
     vi.spyOn(window, "matchMedia").mockReturnValue({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() });
     const user = userEvent.setup();
     render(<App />);
-    expect(screen.getByRole("button", { name: "Pause motion" })).toHaveAttribute("aria-pressed", "true");
+    expect(screen.getByRole("button", { name: "Resume" })).toHaveAttribute("aria-pressed", "true");
     expect(screen.getByRole("button", { name: "Scatter sculpture" })).toBeDisabled();
-    await user.click(screen.getByRole("button", { name: "Explore Applied AI projects" }));
+    await user.click(within(screen.getByRole("group", { name: "Interactive project map" })).getByRole("button", { name: "Applied AI" }));
     expect(screen.getByRole("link", { name: /Explore QueuePilot/ })).toHaveAttribute("href", "https://github.com/brohum10/queuepilot");
-    await user.click(screen.getByRole("button", { name: "Pause motion" }));
+    await user.click(screen.getByRole("button", { name: "Resume" }));
     expect(screen.getByRole("button", { name: "Scatter sculpture" })).toBeEnabled();
   });
   it("keeps every featured path connected to a real project", () => {
@@ -49,15 +49,15 @@ describe("portfolio", () => {
     expect(screen.getByRole("heading", { name: "HarFlow Studio" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "RelayForge" })).toBeInTheDocument();
     expect(screen.getByRole("heading", { name: "PlanClinic" })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: "Open PlanClinic live demo" })).toHaveAttribute("href", "https://brohum10.github.io/planclinic/");
-    expect(screen.getAllByRole("link", { name: /source code on GitHub/ })).toHaveLength(12);
+    expect(screen.getByRole("link", { name: "Try the live demo for PlanClinic" })).toHaveAttribute("href", "https://brohum10.github.io/planclinic/");
+    expect(screen.getAllByRole("link", { name: /View source for .* on GitHub/ })).toHaveLength(12);
   });
 
   it("filters projects without hiding the filter state from assistive technology", async () => {
     const user = userEvent.setup();
     render(<App />);
 
-    const appliedAiFilter = screen.getByRole("button", { name: "Applied AI" });
+    const appliedAiFilter = within(screen.getByRole("group", { name: "Filter projects" })).getByRole("button", { name: "Applied AI" });
     await user.click(appliedAiFilter);
 
     expect(appliedAiFilter).toHaveAttribute("aria-pressed", "true");
@@ -71,9 +71,9 @@ describe("portfolio", () => {
     render(<App />);
 
     const map = screen.getByRole("group", { name: "Interactive project map" });
-    await user.click(within(map).getByRole("button", { name: "Explore Full stack projects" }));
+    await user.click(within(map).getByRole("button", { name: "Full stack" }));
 
-    expect(within(map).getByRole("button", { name: "Explore Full stack projects" })).toHaveAttribute("aria-pressed", "true");
+    expect(within(map).getByRole("button", { name: "Full stack" })).toHaveAttribute("aria-pressed", "true");
     expect(screen.getByRole("heading", { name: "Turn ambiguity into a decision." })).toBeInTheDocument();
     expect(screen.getByRole("link", { name: /Explore ScopeLedger/ })).toHaveAttribute("href", "https://github.com/brohum10/scopeledger");
 
@@ -82,7 +82,7 @@ describe("portfolio", () => {
 
     expect(screen.getByRole("heading", { name: "Make performance tangible." })).toBeInTheDocument();
     expect(screen.getByText("Import HAR")).toBeInTheDocument();
-    expect(within(map).getByRole("button", { name: "Explore Frontend projects" })).toHaveAttribute("aria-pressed", "true");
+    expect(within(map).getByRole("button", { name: "Frontend" })).toHaveAttribute("aria-pressed", "true");
   });
 
   it("exposes mobile navigation state and closes the menu with Escape", async () => {

@@ -51,13 +51,13 @@ export default function LivingSystem({ activeLens, onSelect }) {
         <div>
           <button type="button" onClick={() => renderer.current?.rotate()} aria-label="Rotate sculpture">↻ <span>Rotate</span></button>
           <button type="button" onClick={() => renderer.current?.scatter()} disabled={paused} aria-label="Scatter sculpture">✳ <span>Scatter</span></button>
-          <button type="button" onClick={() => setMotionOverride(!paused)} aria-pressed={paused} aria-label="Pause motion">{paused ? "▷" : "Ⅱ"}<span>{paused ? "Resume" : "Pause"}</span></button>
+          <button type="button" onClick={() => setMotionOverride(!paused)} aria-pressed={paused}><span aria-hidden="true">{paused ? "▷" : "Ⅱ"}</span><span>{paused ? "Resume" : "Pause"}</span></button>
         </div>
       </div>
       <div className="living-system__choices" role="group" aria-label="Interactive project map">
         {featuredLenses.map((lens) => (
-          <button key={lens.id} type="button" aria-pressed={activeLens.id === lens.id} aria-label={`Explore ${lens.label} projects`} onClick={() => onSelect(lens.id)}>
-            <span>{lens.number}</span>{lens.label}<span aria-hidden="true">↗</span>
+          <button key={lens.id} type="button" aria-pressed={activeLens.id === lens.id} onClick={() => onSelect(lens.id)}>
+            <span aria-hidden="true">{lens.number}</span>{lens.label}<span aria-hidden="true">↗</span>
           </button>
         ))}
       </div>
